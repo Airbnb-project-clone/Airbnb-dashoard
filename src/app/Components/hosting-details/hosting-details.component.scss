@@ -1,0 +1,104 @@
+.unit-gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, minmax(100px, 180px));
+  gap: 4px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  img:hover {
+    cursor: pointer;
+  }
+  img:nth-child(1) {
+    grid-row: span 2;
+    grid-column: span 2;
+    border-start-start-radius: 20px;
+    border-end-start-radius: 20px;
+  }
+  img:nth-child(3) {
+    border-start-end-radius: 20px;
+  }
+  img:nth-child(5) {
+    border-end-end-radius: 20px;
+  }
+}
+
+@media (max-width: 728px) {
+  .unit-gallery {
+    grid-template-columns: repeat(1, 1fr);
+    img:nth-child(1) {
+
+        border-radius: 20px;
+      }
+    img:nth-child(2) {
+      display: none;
+    }
+    img:nth-child(3) {
+      display: none;
+    }
+    img:nth-child(4) {
+      display: none;
+    }
+    img:nth-child(5) {
+      display: none;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .unit-gallery {
+    grid-template-rows: repeat(2, minmax(80px, 130px));
+  }
+}
+
+.unit-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.reservation-box{
+  position: fixed;
+  top :150px;
+}
+
+.reservation-button-group{
+  color:black !important;
+  border: 1px solid rgb(90, 89, 89) !important;
+}
+.reservation-button-group-up{
+  border-end-end-radius: 0px !important;
+  border-end-start-radius: 0px !important;
+  width: 50%;
+  text-align: start !important;
+}
+.reservation-button-group-down{
+  border-start-start-radius: 0px !important;
+  border-start-end-radius: 0px !important;
+  text-align: start !important;
+}
+
+.reserve-btn-grad {
+  background-image: linear-gradient(to right, #f857a6 0%, #ff5858  51%, #f857a6  100%);
+  padding: 15px 45px;
+  width :100%;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.reserve-btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}

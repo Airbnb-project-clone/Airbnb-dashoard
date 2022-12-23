@@ -1,0 +1,39 @@
+<div class="mt-5 p-3">
+  <h1>Users List</h1>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 p-3">
+    <ng-container *ngFor="let user of users; let i=index ">
+      <div class="" style="max-width: 20rem ;">
+        <div class="card h-100">
+          <img [src]="user.img?user.img:'../../../../assets/user.jpg'" class="card-img-top h-75  " alt="..." />
+          <div class="card-body">
+
+            <h5 class="card-title">{{user.firstName}} {{ user.lastName}}</h5>
+            <p class="card-text m-0 " style="font-weight:bold ;">{{user.email}}</p>
+            <p class="card-text" style="font-weight:bold">Host : {{user.isHost}}</p>
+          </div>
+          <button type=" button" class="btn btn-danger" data-toggle="modal" data-target="#example" #prdID
+            (click)="deleteUser(user._id)">Delete</button>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="example" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete User?</h5>
+            </div>
+            <div class="modal-body">
+              This User Will be Deleted
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)=" confirm()"> Delete</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

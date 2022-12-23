@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand pb-3" routerLink="/home">Airbnb</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/users" [hidden]="!userLog">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/units" [hidden]="!userLog">Units</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/add-admin" [hidden]="!userLog">Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/hosting" [hidden]="!userLog">Hosting </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#exampleModalLong"
+            [hidden]="userLog">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/Home" (click)="logout()"
+            [hidden]="!userLog">Logout</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="modal fade" style=" border-radius:10px" id="exampleModalLong" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="signup-container ">
+          <div class="finish-signup p-0">
+            <h5 class="text-center ">Log in </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" [hidden]="true"
+              id="closeModalButton">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form (ngSubmit)="login(myForm,admin)" #myForm="ngForm">
+            <h4 class='pb-2'>Welcome to Airbnb Admin Dashboard</h4>
+            <div class='pb-2'>
+              <div class="input-container">
+                <input type="text" #email="ngModel" [(ngModel)]="admin!.email" name="email" placeholder="Email" required
+                  pattern="^[A-Za-z0-9]{3,}@(gmail|yahoo|outlook).com$" />
+              </div>
+              <p class="error" [hidden]="email.valid || email.untouched"><i class="fa-solid fa-circle-exclamation "></i>
+                Email is
+                required
+
+              </p>
+            </div>
+
+
+            <div>
+              <div class="input-container">
+
+                <input #password="ngModel" [(ngModel)]="admin!.password" id="password" name="password"
+                  placeholder="password" required type="password"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z0-9\d@$!%*?&]{8,}$" />
+              </div>
+              <p class="error" [hidden]="password.valid || password.untouched"><i
+                  class=" fa-solid fa-circle-exclamation "></i>
+                Password is
+                required
+              </p>
+
+            </div>
+            <br />
+
+            <input id="submit" type="submit" class="agree-btn" value=" continue" name="submit-btn" />
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

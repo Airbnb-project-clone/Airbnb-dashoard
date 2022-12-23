@@ -1,0 +1,45 @@
+<div class="mt-5 p-3">
+  <h1>Units List</h1>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 p-3">
+    <ng-container *ngFor="let place of places; let i=index ">
+      <div class="" style="max-width: 20rem ;">
+        <div class="card h-100">
+          <img
+            [src]="place.images[6]?place.images[0]:'https://a0.muscache.com/im/pictures/prohost-api/Hosting-584469386220279136/original/227d4c26-43d5-42da-ad84-d039515c0bad.jpeg?im_w=720'"
+            class="card-img-top h-75  " alt="..." />
+          <div class="card-body">
+
+            <h4 class="card-title">{{place.title}}</h4>
+            <p class="card-text m-0 " style="font-weight:bold ;">{{place.location.city}}, {{place.location.state}}</p>
+            <p class="card-text m-0 ">{{place.unitType}}, {{place.placeType}}</p>
+            <p class="card-text">{{place.host?.firstName}} {{place.host?.lastName}}</p>
+          </div>
+          <button type="button fw-bold" class="btn btn-danger mt-3" data-toggle="modal" data-target="#example" #prdID
+            (click)="deletePlace(place._id)">Delete</button>
+
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="example" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete Product?</h5>
+            </div>
+            <div class="modal-body">
+              This Product Will be Deleted
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)=" confirm()"> Delete</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </ng-container>
+  </div>
+</div>

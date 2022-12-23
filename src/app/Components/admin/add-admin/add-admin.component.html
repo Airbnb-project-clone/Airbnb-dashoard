@@ -1,0 +1,53 @@
+<div class=" m-3 mt-5 d-flex justify-content-center">
+  <div class="signup-container w-50 ">
+    <div class="finish-signup p-0">
+      <h5 class="text-center lll">Add Admin </h5>
+    </div>
+    <form (ngSubmit)="addAdmin(admin)">
+      <h4 class='pb-2'></h4>
+
+      <div class='pb-2'>
+        <div class="input-container">
+          <input type="text" #name="ngModel" [(ngModel)]="admin!.name" name="name" placeholder="name" required
+            pattern="^[A-Za-z0-9]{4,}$" type="password" />
+        </div>
+        <p class="error" [hidden]="name.valid || name.untouched"><i class="fa-solid fa-circle-exclamation "></i>
+          Name is required
+        </p>
+      </div>
+
+
+      <div class='pb-2'>
+        <div class="input-container">
+          <input type="text" #email="ngModel" [(ngModel)]="admin!.email" name="email" placeholder="Email" required
+            pattern="^[A-Za-z0-9]{3,}@(gmail|yahoo|outlook).com$" />
+        </div>
+        <p class="error" [hidden]="email.valid || email.untouched"><i class="fa-solid fa-circle-exclamation "></i>
+          Email is
+          required
+
+        </p>
+      </div>
+
+
+      <div>
+        <div class="input-container">
+
+          <input #password="ngModel" [(ngModel)]="admin!.password" name="password" placeholder="password" required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z0-9\d@$!%*?&]{8,}$" />
+        </div>
+        <p class="error" [hidden]="password.valid || password.untouched"><i
+            class=" fa-solid fa-circle-exclamation "></i>
+          Password is
+          required
+        </p>
+
+      </div>
+      <br />
+
+      <input type="submit" class="agree-btn" value=" continue" name="submit-btn" />
+
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="m-5 px-5">
+  <div>
+    <h1 class="fw-bold my-0">{{tempUnit.title}}</h1>
+    <div class="d-flex flex-row justify-content-between">
+      <a class="text-dark fw-semibold mt-0 mb-4 " style="font-size: 20px">
+        {{tempUnit["location"]?.city}}, {{tempUnit["location"]?.state}}, {{tempUnit["location"]?.country}}
+      </a>
+    </div>
+  </div>
+  <div class="unit-gallery mb-4">
+    <ng-container *ngFor="let img of imgs; let i=index ">
+      <img alt="" src={{img}} class="" />
+    </ng-container>
+  </div>
+  <div style="min-width:500px; max-width:700px  ;">
+    <h2><span> {{tempUnit.placeType === 'entire place' ? 'Entire' :tempUnit.placeType }} </span>
+      <span *ngIf="tempUnit.placeType =='private room'">in</span> {{tempUnit.unitType}} hosted by
+      {{tempUnit.host?.first}}
+    </h2>
+    <h5>{{tempUnit.guestsNumber}} guests. {{tempUnit.bedrooms}} bedrooms. {{tempUnit.beds}} beds. {{tempUnit.bathrooms}}
+      baths</h5>
+    <div class="d-flex mt-5 pt-3">
+      <h3 class=" me-4 fw-bold">Price per night is {{tempUnit.pricePerNight}} $</h3>
+    </div>
+    <P class="text-secondary fw-bold" style="font-size:20px ;"> Available from {{tempUnit.date?.start}} -
+      {{tempUnit.date?.end}}</P>
+    <div class="py-3 ">
+      <h3 class="fw-bold">Description</h3>
+      <p class="d-block" style="font-size:20px"> {{tempUnit.description}}</p>
+    </div>
+
+    <div class="py-3 " style=" border-bottom: 5px solid lightgray;">
+      <h3 class="fw-bold">What this place offers</h3>
+
+      <div class="row row-cols-1 row-cols-md-2 my-3">
+        <ng-container *ngFor="let adv of tempUnit.advantages;let i=index ">
+          <div class="col d-flex flex-row align-content-center">
+            <h5 class="mx-3 pt-2">{{adv.title}}</h5>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+    <div class="mt-4">
+      <h1 class="mb-4">Localization</h1>
+      <div class='row  mb-3'>
+        <h5 class="text-secondary">Title :</h5>
+        <textarea class='borer rounded-3 border-secondary w-75' cols="3" [(ngModel)]="ArabicUnit.title"></textarea>
+      </div>
+      <div class='row mb-3'>
+        <h5 class="text-secondary" style="font-size:16px">Share what makes your place special :
+        </h5>
+        <textarea class='borer rounded-3 border-secondary w-75' cols="3" rows="5"
+          [(ngModel)]="ArabicUnit.description"></textarea>
+      </div>
+      <div class='row mb-3'>
+        <h5 class="text-secondary" style="font-size:16px">Unit type :
+        </h5>
+        <select required class='form-control  w-75' [(ngModel)]="ArabicUnit.unitType">
+          <option disabled selected>Choose the unit type</option>
+          <option>منزل</option>
+          <option>شقة</option>
+          <option>فندق</option>
+
+        </select>
+      </div>
+      <div class='row mb-3'>
+        <h5 class="text-secondary" style="font-size:16px">Place type :
+        </h5>
+        <select required class='form-control w-75' [(ngModel)]="ArabicUnit.placeType">
+          <option disabled selected>Choose the place type</option>
+          <option>مسكن كامل</option>
+          <option>غرقة مشتركة </option>
+          <option>غرفة خاصة</option>
+
+        </select>
+      </div>
+      <div class='row  mb-3'>
+        <h5 class="text-secondary">Country :</h5>
+        <textarea class='borer rounded-3 border-secondary w-75' cols="3"
+          [(ngModel)]="ArabicUnit.location!.country"></textarea>
+      </div>
+      <div class='row  mb-3'>
+        <h5 class="text-secondary">State :</h5>
+        <textarea class='borer rounded-3 border-secondary w-75' cols="3"
+          [(ngModel)]="ArabicUnit.location!.state"></textarea>
+      </div>
+      <div class='row  mb-3'>
+        <h5 class="text-secondary">City :</h5>
+        <textarea class='borer rounded-3 border-secondary w-75' cols="3"
+          [(ngModel)]="ArabicUnit.location!.city"></textarea>
+      </div>
+
+
+      <div class=' mb-3'>
+        <h5 class="text-secondary">What this place offers</h5>
+        <form [formGroup]="form">
+          <div *ngFor="let addv of advantages; let i=index">
+            <input type="checkbox" class=" form-check-input" formArrayName="selectedCountries" [value]="addv.title"
+              (change)="onCheckboxChange($event)" />
+            {{ addv.title}}
+          </div>
+        </form>
+
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button type="button fw-bold" class="btn btn-danger px-5" data-toggle="modal" data-target="#example" #prdID
+          (click)="delete(tempUnit._id)">Delete</button>
+        <button class="btn btn-success px-5" (click)="Publish()">Publish</button>
+      </div>
+
+
+      <div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="example" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete Product?</h5>
+            </div>
+            <div class="modal-body">
+              This Product Will be Deleted
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)=" confirm()"> Delete</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
